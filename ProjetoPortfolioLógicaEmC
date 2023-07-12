@@ -1,0 +1,360 @@
+#include <stdio.h>
+
+#define SIZE 3
+
+void printBoard(char board[SIZE][SIZE]) {
+    int i, j;
+    printf("\n");
+    printf("     1   2   3\n");
+    printf("   -------------\n");
+    for (i = 0; i < SIZE; i++) {
+        printf("%d  ", i + 1);
+        for (j = 0; j < SIZE; j++) {
+            printf("| %c ", board[i][j]);
+        }
+        printf("|\n");
+        printf("   -------------\n");
+    }
+}
+
+int checkWin(char board[SIZE][SIZE], char player) {
+    int i, j;
+
+    for (i = 0; i < SIZE; i++) {
+        if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
+            return 1;
+        }
+    }
+
+    for (j = 0; j < SIZE; j++) {
+        if (board[0][j] == player && board[1][j] == player && board[2][j] == player) {
+            return 1;
+        }
+    }
+
+    if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) ||
+        (board[0][2] == player && board[1][1] == player && board[2][0] == player)) {
+        return 1;
+    }
+
+    return 0;
+}
+
+int isBoardFull(char board[SIZE][SIZE]) {
+    int i, j;
+
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            if (board[i][j] == ' ') {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+void JogarJogo(){
+    char board[SIZE][SIZE];
+    char currentPlayer = 'X';
+    int row, col;
+    int i, j;
+
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            board[i][j] = ' ';
+        }
+    }
+
+    printf("Jogo da Velha\n");
+
+    while (1) {
+        printBoard(board);
+
+        printf("Jogador %c, digite a linha (1-%d): ", currentPlayer, SIZE);
+        scanf("%d", &row);
+        printf("Jogador %c, digite a coluna (1-%d): ", currentPlayer, SIZE);
+        scanf("%d", &col);
+
+        row--;
+        col--;
+
+        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || board[row][col] != ' ') {
+            printf("Jogada invalida. Tente novamente.\n");
+            continue;
+        }
+
+        board[row][col] = currentPlayer;
+
+        if (checkWin(board, currentPlayer)) {
+            printBoard(board);
+            printf("Jogador %c venceu! Parabens!\n", currentPlayer);
+            break;
+        } else if (isBoardFull(board)) {
+            printBoard(board);
+            printf("Empate! O jogo terminou empatado.\n");
+            break;
+        }
+
+        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+    }
+}
+
+void minhaRedacao() {
+    printf("Escolha uma redacao:\n");
+    printf("1 - Portugues\n");
+    printf("2 - Ingles\n");
+
+    int redacao;
+    scanf("%d", &redacao);
+
+    switch (redacao) {
+        case 1:
+
+printf("Titulo: A Controversia em Torno de um Incidente em uma Festa Infantil: Analise de Opinioes no Contexto Brasileiro\n");
+printf("     \n");
+printf("No contexto social brasileiro, episodios que geram polemica e divisao de opinioes sao comuns.\n");
+printf("A recente noticia envolvendo uma mulher de 27 anos, mae de uma crianca, que protagonizou um ato\n");
+printf("libidinoso em uma festa infantil,despertou uma ampla gama de reacoes e posicionamentos. Nesta redacao,\n");
+printf("exploraremos diferentes opinioes de mulheres brasileiras,de varias faixas etarias e regioes,\n");
+printf("a respeito desse incidente.No que se refere as opinioes,Um grupo ao comportamento da mae em\n");
+printf("de mulheres,especialmente aquelas com valores mais conservadores,manifesta veemente repudio ao \n");
+printf("questao.Elas argumentam que um ambiente infantil exige respeito as criancas,a sua inocencia \n");
+printf("e a formacao de valores adequados.Para elas, a exibicao de partes intimas e a danca sensual\n");
+printf("sao inadequadas e desrespeitosas,Defendem que a mae deveria ter agido com mais responsabilidade e\n");
+printf("consciencia dos limites.Outro grupo de mulheres mais inclinado a tolerancia e a liberdade individual,\n");
+printf("expressa uma opiniao diferente. Elas argumentam que cada pessoa tem o direito de expressar sua sexualidade\n");
+printf("e ser dona de seu proprio corpo. Acreditam que a mae em questao estava exercendo sua autonomia e\n");
+printf("que sua acao nao deve ser vista como algo necessariamente prejudicial as criancas presentes.Para elas,\n");
+printf("a exposicao a diversidade de comportamentos desde cedo pode contribuir para uma maior compreensao\n");
+printf("e aceitacao da diferencas na sociedade Um grupo de mulheres, influenciadas pelo movimento feminista,\n");
+printf("propoe uma reflexao mais ampla sobre oincidente. Elas questionam a objetificacao do corpo feminino\n");
+printf("e a culpabilizacao da mulher, especialmente quando se trata de sua sexualidade.Defendem que a mae\n");
+printf("tem o direito de explorar sua sensualidade, desde que nao haja coercao ou violencia envolvida.\n");
+printf("Porem, ressaltam a importancia da consciencia do contexto em que se esta inserida,\n");
+printf("reconhecendo que uma festa infantil nao era o local mais apropriado para tal comportamento.\n");
+printf("Alem disso, um grupo de mulheres com posicionamento conservador tradicional enfatiza a necessidade\n");
+printf("de proteger a inocencia das criancas e manter a moralidade tradicional. Elas argumentam\n");
+printf("que a exposicao das criancas a atos libidinosos pode ter consequencias prejudiciais em seu\n");
+printf("desenvolvimento emocional e psicologico. Para essas mulheres, a mae em questao\n");
+printf("falhou em seu papel de educadora e cuidadora, e sua justificativa de 'ja ter visto coisa pior'\n");
+printf("nao e valida.Diante desse incidente em uma festa infantil, a sociedade brasileira \n");
+printf("demonstra uma variedade de opinioes, abrangendo desde que condenam firmemente a atitude da mae\n");
+printf("ate as que defendem seu direito a autonomia e expressao.As diferentes perspectivas\n");
+printf("revelam a complexidade dos valores e normas presentes na sociedade brasileira.\n");
+printf("E importante ressaltar que, independentemente das divergencias de opiniao, e fundamental, \n");
+printf("considerar o bem-estar das criancas envolvidas. Preservar sua inocencia, proteger sua, \n");
+printf("integridade e proporcionar um ambiente adequado ao seu desenvolvimento sao aspectos primordiais.\n");
+printf("A responsabilidade dos adultos em garantir um espaco seguro e educativo para as criancas nao pode ser subestimada.\n");
+printf("Diante desse caso especifico, uma reflexao sobre a adequacao do ambiente e o respeito aos limites e necessaria.\n");
+printf("Embora a liberdade individual deva ser valorizada, e essencial reconhecer os contextos em que nossas acoes \n");
+printf("ocorrem e considerar as consequencias que podem surgir delas.O debate gerado por essa noticia destaca a \n");
+printf("importancia de um dialogo aberto e respeitoso sobre questoes morais e eticas na sociedade brasileira. \n");
+printf("Promover um cultura de compreensao mutua, em que diferentes perspectivas sejam ouvidas e consideradas, e \n");
+printf("fundamental para o avanco de um ambiente mais inclusivo e harmonioso.Em ultima analise, o incidente na festa infantil\n");
+printf("despertou uma multiplicidade de opinioes entre as mulheres brasileiras. Cada posicao reflete uma visao de mundo e\n");
+printf("uma compreensao particular das dinamicas sociais. Conforme seguimos adiante, e crucial continuar o dialogo construtivo \n");
+printf("e buscar solucoes que priorizem o bem-estar das criancas, a valorizacao da dignidade humana e o respeito aos valores \n");
+printf("fundamentais que norteiam nossa sociedade.\n");
+            break;
+        case 2:
+            printf("Title: The Controversy Surrounding an Incident at a Children's Party: Analysis of Opinions in the Brazilian Context\n");
+            printf("     \n");
+            printf("In the Brazilian social context, episodes that generate controversy and division of opinions are common.\n");
+            printf("The recent news involving a 27-year-old woman, mother of a child, who committed a libidinous act at a \n");
+            printf("children's party, aroused a wide range of reactions and positions. In this essay, we will explore different \n");
+            printf("opinions of Brazilian women, from various age groups and regions, regarding this incident.One group of women,\n");
+            printf("especially those with more conservative values, strongly reject the behavior of the mother in question. They \n");
+            printf("argue that a children's environment requires respect for children, their innocence, and the formation of \n");
+            printf("appropriate values. For them, the exhibition of private parts and the sensual dancing are inappropriate and \n");
+            printf("disrespectful, since the party was aimed at children. They argue that the mother should have acted with more\n");
+            printf("responsibility and awareness of limits. Another group of women, more inclined to tolerance and individual freedom,\n");
+            printf("express a different opinion. They argue that every person has the right to express their sexuality and to own\n");
+            printf("their own body. They believe that the mother in question was exercising her autonomy and that her action should \n");
+            printf("not be seen as necessarily harmful to the children present. For them, exposure to the diversity of behaviors from\n");
+            printf("an early age can contribute to a greater understanding and acceptance of differences in society. A group of women,\n");
+            printf("influenced by the feminist movement, propose a broader reflection on the incident. They question the objectification\n");
+            printf("of the female body and the blaming of women, especially when it comes to their sexuality. They defend that the mother\n");
+            printf("has the right to explore her sensuality, as long as there is no coercion or violence involved. However, they\n");
+            printf("emphasize the importance of awareness of the context in which one is inserted, recognizing that a children's party\n");
+            printf("was not the most appropriate place for such behavior.In addition, a group of women with traditional conservative\n");
+            printf("positioning emphasize the need to protect the innocence of children and maintain traditional morality. They argue\n");
+            printf("that exposing children to libidinous acts can have detrimental consequences on their emotional and psychological\n");
+            printf("development. For these women, the mother in question has failed in her role as educator and caregiver, and herzn\n");
+            printf("justification of 'having seen worse' is not valid. Faced with this incident at a children's party,Brazilian society\n");
+            printf("demonstrates a variety of opinions, ranging from those that strongly condemn the mother's attitude to those that\n");
+            printf("defend her right to autonomy and expression. The different perspectives reveal the complexity of values and norms\n");
+            printf("present in Brazilian society.It is important to emphasize that, regardless of the differences of opinion, it is\n");
+            printf("fundamental to consider the welfare of the children involved. Preserving their innocence, protecting their integrity,\n");
+            printf("and providing a suitable environment for their development are paramount. The responsibility of adults to ensure\n");
+            printf("a safe and educational space for children cannot be underestimated.In this specific case, a reflection about the\n");
+            printf("adequacy of the environment and the respect for limits is necessary. While individual freedom must be valued, it is\n");
+            printf("essential to recognize the contexts in which our actions occur and consider the consequences that may arise from them.\n");
+            printf("The debate generated by this news story highlights the importance of an open and respectful dialogue about moral and\n");
+            printf("ethical issues in Brazilian society. Promoting a culture of mutual understanding, in which different perspectives are\n");
+            printf("heard and considered, is key to advancing a more inclusive and harmonious environment.Ultimately, the incident at the\n");
+            printf("children's party sparked a multiplicity of opinions among Brazilian women. Each position reflects a particular\n");
+            printf("worldview and understanding of social dynamics. As we move forward, it is crucial to continue the constructive dialogue\n");
+            printf("and seek solutions that prioritize the well-being of children, the valuing of human dignity, and respect for the\n");
+            printf("fundamental values that guide our society.\n");
+
+            break;
+        default:
+            printf("Redacao invalida\n");
+            return;
+    }
+
+    char opcao;
+    printf("     \n");
+    printf("Deseja voltar ao menu? (S/N): ");
+    scanf(" %c", &opcao);
+
+    if (opcao == 'S' || opcao == 's') {
+        printf("\n");
+        main();
+    } else if (opcao == 'N' || opcao == 'n') {
+        printf("Programa encerrado.\n");
+        exit(0);
+    }
+}
+
+
+void calculadora() {
+    double num1, num2, resultado;
+    char operador;
+
+    printf("Digite o primeiro numero: ");
+    scanf("%lf", &num1);
+
+    printf("Digite o segundo numero: ");
+    scanf("%lf", &num2);
+
+    printf("Digite o operador (+, -, *, /): ");
+    scanf(" %c", &operador);
+
+    switch (operador) {
+        case '+':
+            resultado = num1 + num2;
+            printf("Resultado: %.2lf\n", resultado);
+            break;
+        case '-':
+            resultado = num1 - num2;
+            printf("Resultado: %.2lf\n", resultado);
+            break;
+        case '*':
+            resultado = num1 * num2;
+            printf("Resultado: %.2lf\n", resultado);
+            break;
+        case '/':
+            if (num2 != 0) {
+                resultado = num1 / num2;
+                printf("Resultado: %.2lf\n", resultado);
+            } else {
+                printf("Erro: Divisao por zero\n");
+            }
+            break;
+        default:
+            printf("Operador invalido\n");
+            break;
+    }
+
+    char opcao;
+    printf("     \n");
+    printf("Deseja voltar ao menu? (S/N): ");
+    scanf(" %c", &opcao);
+
+    if (opcao == 'S' || opcao == 's') {
+        printf("\n");
+        main();
+    } else if (opcao == 'N' || opcao == 'n') {
+        printf("Programa encerrado.\n");
+        exit(0);
+    }
+}
+
+void media() {
+
+float n1, n2, n3, n4, prova, media_n1, media_n2, media_final;
+
+    printf("Digite as notas das atividades numero 1 (n1, n2, n3, n4)(com espaco na mesma linha): ");
+    scanf("%f %f %f %f", &n1, &n2, &n3, &n4);
+
+    printf("Digite a nota da atividade numero 2 (prova): ");
+    scanf("%f", &prova);
+
+    media_n1 = (n1 + n2 + n3 + n4) / 4.0;
+    media_n2 = prova;
+    media_final = (media_n1 * 0.4) + (media_n2 * 0.6);
+
+    printf("\nMedia geral atividades numero 1: %.2f\n", media_n1);
+    printf("Media geral atividades numero 2: %.2f\n", media_n2);
+    printf("Media final: %.2f\n", media_final);
+
+    if (media_final >= 6.0) {
+        printf("Aluno aprovado!\n");
+    } else {
+        printf("Aluno reprovado!\n");
+    }
+
+char opcao;
+    printf("     \n");
+    printf("Deseja voltar ao menu? (S/N): ");
+    scanf(" %c", &opcao);
+
+    if (opcao == 'S' || opcao == 's') {
+        printf("\n");
+        main();
+    } else if (opcao == 'N' || opcao == 'n') {
+        printf("Programa encerrado.\n");
+        exit(0);
+    }
+
+}
+
+int main() {
+    int opcao;
+
+    printf("************************************\n");
+    printf("****  BEM VINDO AO PORTFOLIO    ****\n");
+    printf("****   DE LOGICA DO EDUARDO     ****\n");
+    printf("****      DE LIMA PARANHOS      ****\n");
+    printf("************************************\n");
+
+    printf("Escolha uma opcao:\n");
+    printf("1 - Redacoes\n");
+    printf("2 - Calculadora\n");
+    printf("3 - Jogo da Velha\n");
+    printf("4 - Calculo de Media\n");
+
+    printf("Opcao: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            printf("Opcao 1 Selecionada: Minhas redacoes\n");
+            minhaRedacao();
+            break;
+        case 2:
+            printf("Opcao 2 Selecionada: Calculadora\n");
+            calculadora();
+            break;
+        case 3:
+            printf("Opcao 3 Selecionada: Jogo da Velha\n");
+            JogarJogo();
+            break;
+        case 4:
+            printf("Opcao 4 Selecionada: Calculo de Media\n");
+            media();
+            break;
+        default:
+            printf("Opcao invalida\n");
+            break;
+    }
+
+    printf("\nPressione qualquer tecla para voltar ao menu do portfolio...");
+    getchar();
+    getchar();
+
+    main();
+
+    return 0;
+}
